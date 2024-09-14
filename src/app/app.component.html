@@ -1,4 +1,17 @@
 <div class="container">
     <h1>Archivos</h1>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Acciones</button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="#" (click)="abrirFormulario()">Nuevo</a></li>
+        </ul>
+      </div>
     <app-tabla [files]="files"/>
+    <div class="container mb-4">
+        @if(formularioActivo){
+            <app-formulario 
+                (archivoCreado)="guardarArchivo($event)"
+            />
+        }
+    </div>
 </div>

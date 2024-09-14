@@ -26,10 +26,13 @@
                 <td><i class="bi bi-file-earmark"></i>{{file.name}}</td>
               }
             }
+            @default {
+              <td>{{file.name}}</td>
+            }
           }
           <td>{{ file.creation | date:'dd-MM-yyyy'}}</td>
           <td>@for (owner of file.owners; track owner; let indice = $index) {
-            <img class="img" src="{{owner.avatarUrl}}" alt="Dueño: {{owner.name}}">  
+            <img class="img" src="{{owner.avatarUrl}}" alt="{{owner.name}}">  
           }</td>
         </tr>
       }

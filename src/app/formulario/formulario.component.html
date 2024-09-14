@@ -1,1 +1,29 @@
-<p>formulario works!</p>
+<form #form="ngForm" (ngSubmit)="crearArchivo(form)">
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre"
+        [(ngModel)]="fileItem.name" name="nombre" required
+        #nombre="ngModel"
+        >
+    </div>
+    <div class="mb-3">
+        <label for="fecha" class="form-label">Fecha</label>
+        <input type="date" class="form-control" id="fecha"
+        [(ngModel)]="fileItem.creation" name="fecha" required
+        #fecha="ngModel"
+        >
+    </div>
+
+    <div class="mb-3">
+        <label for="tipoArchivo" class="form-label">Tipo Archivo</label>
+        <select [(ngModel)]="fileItem.type" class="form-select">
+            <option [value]="fileType.FILE">Archivo</option>
+            <option [value]="fileType.FOLDER">Carpeta</option>
+        </select>
+    </div>
+
+    <div class="d-flex">
+        <button type="button" class="btn btn-secondary" (click)="volver($event)">Volver</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>
