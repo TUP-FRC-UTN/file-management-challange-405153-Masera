@@ -8,11 +8,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>mdo</td>
-      </tr> 
+      @for (file of files; track file; let indice = $index) {
+        <tr>
+          <th scope="row"><input type="checkbox"></th>
+          
+          @switch (file.type) {
+            @case (fileType.FOLDER) {
+              @if(file.name.length>10){
+                <td data-bs-toggle="tooltip" data-bs-placement="top" data-title={{file.name}}> Hola</td>
+              }
+              <td></td>
+            }
+
+          }
+          <td>{{ file.name }}</td>
+          <td>{{ file.creation }}</td>
+          <td>{{ file.owners }}</td>
+        </tr>
+      }
     </tbody>
 </table>
