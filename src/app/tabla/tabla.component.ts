@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class TablaComponent 
 {
-  @Input() files: FileItem[] = [];
+  @Input() filesShow: FileItem[] = [];
   fileType = FileType;
 
 }

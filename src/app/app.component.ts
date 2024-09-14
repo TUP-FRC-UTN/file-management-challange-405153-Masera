@@ -9,7 +9,7 @@ import { FormularioComponent } from './formulario/formulario.component';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, TablaComponent, FormularioComponent],
-  templateUrl: './app.component.html',
+templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
@@ -18,7 +18,10 @@ export class AppComponent {
   formularioActivo: boolean = false;
 
   guardarArchivo(archivo: FileItem) {
+    console.log(archivo);
     this.files.push(archivo);
+    console.log(archivo.name);
+    console.log(this.files);
     this.formularioActivo = false;
   }
 

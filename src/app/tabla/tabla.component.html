@@ -8,9 +8,9 @@
       </tr>
     </thead>
     <tbody>
-      @for (file of files; track file; let indice = $index) {
+      @for (file of filesShow; track file.id; let indice = $index) {
         <tr>
-          <th scope="row"><input type="checkbox"></th>  
+          <th scope="row"><input type="checkbox" name="check"></th>  
           @switch (file.type) {
             @case (fileType.FOLDER) {
               @if(file.name.length>10){

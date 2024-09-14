@@ -2,9 +2,13 @@
     <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
         <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre"
-        [(ngModel)]="fileItem.name" name="nombre" required
+        name="nombre" required
+        [(ngModel)]="fileItem.name" 
         #nombre="ngModel"
         >
+        @if(nombre.invalid){
+            <span>Debe Ingresar el nombre</span>
+        }
     </div>
     <div class="mb-3">
         <label for="fecha" class="form-label">Fecha</label>
@@ -16,9 +20,24 @@
 
     <div class="mb-3">
         <label for="tipoArchivo" class="form-label">Tipo Archivo</label>
-        <select [(ngModel)]="fileItem.type" class="form-select">
-            <option [value]="fileType.FILE">Archivo</option>
-            <option [value]="fileType.FOLDER">Carpeta</option>
+        <select [(ngModel)]="fileItem.type" class="form-select" id="tipoArchivo"
+            name="tipoArchivo">
+            <option [ngValue]="fileType.FILE">Archivo</option>
+            <option [ngValue]="fileType.FOLDER">Carpeta</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <label for="carpeta" class="form-label">Carpeta</label>
+        <select [(ngModel)]="fileItem.parentId" class="form-control" name="carpeta" id="carpeta">
+            <option *ngFor="let folder of folders" [value]="folder.id">{{folder.name}}</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <label for="propietario" class="form-label">Dueños</label>
+        <select class="form-control" name="propietario" id="propietario">
+            <option *ngFor="let owner of owners" [value]="owner">{{owner.name}}</option>
         </select>
     </div>
 
