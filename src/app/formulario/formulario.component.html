@@ -1,27 +1,36 @@
-<form #form="ngForm" (ngSubmit)="crearArchivo(form)">
+<form #form="ngForm" (ngSubmit)="crearArchivo(form)" class="needs-validation" novalidate>
     <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
         <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre"
         name="nombre" required
         [(ngModel)]="fileItem.name" 
         #nombre="ngModel"
+        [ngClass]="{'is-invalid': nombre.invalid,
+                    'is-valid': nombre.valid
+                    }"
         >
-        @if(nombre.invalid){
-            <span>Debe Ingresar el nombre</span>
-        }
     </div>
     <div class="mb-3">
         <label for="fecha" class="form-label">Fecha</label>
         <input type="date" class="form-control" id="fecha"
         [(ngModel)]="fileItem.creation" name="fecha" required
         #fecha="ngModel"
+        [ngClass]="{'is-invalid': fecha.invalid,
+                    'is-valid': fecha.valid
+                    }"
         >
     </div>
 
     <div class="mb-3">
         <label for="tipoArchivo" class="form-label">Tipo Archivo</label>
         <select [(ngModel)]="fileItem.type" class="form-select" id="tipoArchivo"
-            name="tipoArchivo">
+            name="tipoArchivo" required
+            #tipoArchivo="ngModel"
+            [ngClass]="{'is-invalid': tipoArchivo.invalid,
+                    'is-valid': tipoArchivo.valid
+                    }"
+            >
+            <option [ngValue]="null" selected>Seleccione un tipo</option>
             <option [ngValue]="fileType.FILE">Archivo</option>
             <option [ngValue]="fileType.FOLDER">Carpeta</option>
         </select>
@@ -29,14 +38,18 @@
 
     <div class="row">
         <label for="carpeta" class="form-label">Carpeta</label>
-        <select [(ngModel)]="fileItem.parentId" class="form-control" name="carpeta" id="carpeta">
+        <select [(ngModel)]="fileItem.parentId" class="form-control" name="carpeta" id="carpeta"
+        [ngClass]="{'is-valid': true}"
+        >
             <option *ngFor="let folder of folders" [value]="folder.id">{{folder.name}}</option>
         </select>
     </div>
 
     <div class="row">
         <label for="propietario" class="form-label">Dueños</label>
-        <select class="form-control" name="propietario" id="propietario">
+        <select class="form-control" name="propietario" id="propietario"
+        [ngClass]="{'is-valid': true}"
+        >
             <option *ngFor="let owner of owners" [value]="owner">{{owner.name}}</option>
         </select>
     </div>
